@@ -1,15 +1,11 @@
-// /* eslint-disable */
 import readlineSync from "readline-sync";
+import { generateRandomNumber } from "../modules/generate-random-number.js";
 
-function generateRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function gameLogic(num, userAnswer) {
+function gameLogic(generateNum, userAnswer) {
   const correctAnswer = "Correct!";
   const wrongAnswer = "'yes' is wrong answer ;(. Correct answer was 'no'.";
 
-  if (num % 2 === 0) {
+  if (generateNum % 2 === 0) {
     return userAnswer === "yes" ? correctAnswer : wrongAnswer;
   }
   return userAnswer === "no" ? correctAnswer : wrongAnswer;
@@ -27,12 +23,12 @@ export function evenGame() {
   let result = "";
 
   do {
-    const numQuestion = generateRandomNumber(1, 100);
-    console.log(`Question: ${numQuestion}`);
+    const generateQuestion = generateRandomNumber(1, 100);
+    console.log(`Question: ${generateQuestion}`);
 
-    const numAnswer = readlineSync.question("Your answer: ");
+    const userAnswer = readlineSync.question("Your answer: ");
 
-    result = gameLogic(numQuestion, numAnswer);
+    result = gameLogic(generateQuestion, userAnswer);
     console.log(result);
 
     counter += 1;
