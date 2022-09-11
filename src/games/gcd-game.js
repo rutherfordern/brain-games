@@ -1,29 +1,46 @@
 import readlineSync from "readline-sync";
 import { generateRandomNumber } from "../modules/generate-random-number.js";
+import { gcd } from "../modules/gcd-numbers.js";
 
-function gameLogic(generateNum, userAnswer) {
+function generateQuestion() {
+  const x = generateRandomNumber(1, 100);
+  const y = generateRandomNumber(1, 100);
+
+  const result = `${x} ${y}`;
+  return result;
+}
+
+function gameLogic(numbers, userAnswer) {
+  const arrayNumbers = numbers.split(" ");
+  const [num1, num2] = arrayNumbers;
+
+  const x = Number(num1);
+  const y = Number(num2);
+
+  const resultGcd = gcd(x, y);
+
   const correctAnswer = "Correct!";
   const wrongAnswer = "'yes' is wrong answer ;(. Correct answer was 'no'.";
 
-  if (generateNum % 2 === 0) {
-    return userAnswer === "yes" ? correctAnswer : wrongAnswer;
+  if (resultGcd === Number(userAnswer)) {
+    return correctAnswer;
   }
-  return userAnswer === "no" ? correctAnswer : wrongAnswer;
+  return wrongAnswer;
 }
 
-export function evenGame() {
+export function gcdGame() {
   console.log("Welcome to the Brain Games!");
 
   const name = readlineSync.question("May I have your name? ");
   console.log(`Hello, dear ${name}!`);
 
-  console.log("Answer 'yes' if the number is even, otherwise answer 'no'.");
+  console.log("Find the greatest common divisor of given numbers.");
 
   let counter = 0;
   let result = "";
 
   do {
-    const question = generateRandomNumber(1, 100);
+    const question = generateQuestion();
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question("Your answer: ");
