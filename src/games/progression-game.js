@@ -3,6 +3,7 @@ import { generateRandomNumber } from "../modules/generate-random-number.js";
 import { generateRandomOneNum } from "../modules/generate-random-one-num.js";
 
 let hiddenNum = null;
+
 function generateQuestion() {
   const arrayLength = generateRandomNumber(5, 10);
   const step = generateRandomNumber(1, 10);
