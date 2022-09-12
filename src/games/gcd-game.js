@@ -1,6 +1,8 @@
-import readlineSync from "readline-sync";
+import { gameEngine } from "../game-engine/engine.js";
 import { generateRandomNumber } from "../modules/generate-random-number.js";
 import { gcd } from "../modules/gcd-numbers.js";
+
+const gameRule = "Find the greatest common divisor of given numbers.";
 
 function generateQuestion() {
   const x = generateRandomNumber(1, 100);
@@ -20,7 +22,7 @@ function gameLogic(numbers, userAnswer) {
   const resultGcd = gcd(x, y);
 
   const correctAnswer = "Correct!";
-  const wrongAnswer = "'yes' is wrong answer ;(. Correct answer was 'no'.";
+  const wrongAnswer = `'yes' is wrong answer ;(. Correct answer was ${resultGcd}.`;
 
   if (resultGcd === Number(userAnswer)) {
     return correctAnswer;
@@ -28,28 +30,4 @@ function gameLogic(numbers, userAnswer) {
   return wrongAnswer;
 }
 
-export function gcdGame() {
-  console.log("Welcome to the Brain Games!");
-
-  const name = readlineSync.question("May I have your name? ");
-  console.log(`Hello, dear ${name}!`);
-
-  console.log("Find the greatest common divisor of given numbers.");
-
-  let counter = 0;
-  let result = "";
-
-  do {
-    const question = generateQuestion();
-    console.log(`Question: ${question}`);
-
-    const userAnswer = readlineSync.question("Your answer: ");
-
-    result = gameLogic(question, userAnswer);
-    console.log(result);
-
-    counter += 1;
-  } while (counter < 3 && result === "Correct!");
-
-  return result === "Correct!" ? console.log(`Congratulations, ${name}!`) : console.log(`Let's try again, ${name}!`);
-}
+export default () => gameEngine(gameRule, generateQuestion, gameLogic);

@@ -1,3 +1,3 @@
-import { primeGame } from "../src/games/prime-game.js";
+import primeGame from "../src/games/prime-game.js";
 
 primeGame();

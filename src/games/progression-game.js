@@ -1,7 +1,8 @@
-import readlineSync from "readline-sync";
+import { gameEngine } from "../game-engine/engine.js";
 import { generateRandomNumber } from "../modules/generate-random-number.js";
 import { generateRandomOneNum } from "../modules/generate-random-one-num.js";
 
+const gameRule = "What number is missing in the progression?";
 let hiddenNum = null;
 
 function generateQuestion() {
@@ -35,28 +36,4 @@ function gameLogic(progression, userAnswer) {
   return wrongAnswer;
 }
 
-export function progressionGame() {
-  console.log("Welcome to the Brain Games!");
-
-  const name = readlineSync.question("May I have your name? ");
-  console.log(`Hello, dear ${name}!`);
-
-  console.log("What number is missing in the progression?");
-
-  let counter = 0;
-  let result = "";
-
-  do {
-    const question = generateQuestion();
-    console.log(`Question: ${question}`);
-
-    const userAnswer = readlineSync.question("Your answer: ");
-
-    result = gameLogic(question, userAnswer);
-    console.log(result);
-
-    counter += 1;
-  } while (counter < 3 && result === "Correct!");
-
-  return result === "Correct!" ? console.log(`Congratulations, ${name}!`) : console.log(`Let's try again, ${name}!`);
-}
+export default () => gameEngine(gameRule, generateQuestion, gameLogic);

@@ -1,5 +1,7 @@
-import readlineSync from "readline-sync";
 import { generateRandomNumber } from "../modules/generate-random-number.js";
+import { gameEngine } from "../game-engine/engine.js";
+
+const gameRule = "What is the result of the expression?";
 
 function generateQuestion() {
   const x = generateRandomNumber(1, 100);
@@ -41,27 +43,4 @@ function gameLogic(expression, userAnswer) {
   return wrongAnswer;
 }
 
-export function calcGame() {
-  console.log("Welcome to the Brain Games!");
-
-  const name = readlineSync.question("May I have your name? ");
-  console.log(`Hello, dear ${name}!`);
-  console.log("What is the result of the expression?");
-
-  let counter = 0;
-  let result = "";
-
-  do {
-    const question = generateQuestion();
-    console.log(`Question: ${question}`);
-
-    const userAnswer = readlineSync.question("Your answer: ");
-
-    result = gameLogic(question, userAnswer);
-    console.log(result);
-
-    counter += 1;
-  } while (counter < 3 && result === "Correct!");
-
-  return result === "Correct!" ? console.log(`Congratulations, ${name}!`) : console.log(`Let's try again, ${name}!`);
-}
+export default () => gameEngine(gameRule, generateQuestion, gameLogic);

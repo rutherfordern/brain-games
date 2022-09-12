@@ -1,5 +1,12 @@
-import readlineSync from "readline-sync";
 import { generateRandomNumber } from "../modules/generate-random-number.js";
+import { gameEngine } from "../game-engine/engine.js";
+
+const gameRule = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+
+function generateQuestion() {
+  const digit = generateRandomNumber(1, 100);
+  return digit;
+}
 
 function gameLogic(generateNum, userAnswer) {
   const correctAnswer = "Correct!";
@@ -11,28 +18,4 @@ function gameLogic(generateNum, userAnswer) {
   return userAnswer === "no" ? correctAnswer : wrongAnswer;
 }
 
-export function evenGame() {
-  console.log("Welcome to the Brain Games!");
-
-  const name = readlineSync.question("May I have your name? ");
-  console.log(`Hello, dear ${name}!`);
-
-  console.log("Answer 'yes' if the number is even, otherwise answer 'no'.");
-
-  let counter = 0;
-  let result = "";
-
-  do {
-    const question = generateRandomNumber(1, 100);
-    console.log(`Question: ${question}`);
-
-    const userAnswer = readlineSync.question("Your answer: ");
-
-    result = gameLogic(question, userAnswer);
-    console.log(result);
-
-    counter += 1;
-  } while (counter < 3 && result === "Correct!");
-
-  return result === "Correct!" ? console.log(`Congratulations, ${name}!`) : console.log(`Let's try again, ${name}!`);
-}
+export default () => gameEngine(gameRule, generateQuestion, gameLogic);
