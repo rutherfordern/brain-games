@@ -33,7 +33,7 @@ function gameLogic(expression, userAnswer) {
   }
 
   const correctAnswer = "Correct!";
-  const wrongAnswer = "'yes' is wrong answer ;(. Correct answer was 'no'.";
+  const wrongAnswer = `'yes' is wrong answer ;(. Correct answer was ${result}.`;
 
   if (result === Number(userAnswer)) {
     return correctAnswer;
