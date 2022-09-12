@@ -4,7 +4,7 @@ export function gameEngine(gameRule, gameQuestion, gameLogic) {
   console.log("Welcome to the Brain Games!");
 
   const name = readlineSync.question("May I have your name? ");
-  console.log(`Hello, dear ${name}!`);
+  console.log(`Hello, ${name}!`);
   console.log(gameRule);
 
   let counter = 0;
