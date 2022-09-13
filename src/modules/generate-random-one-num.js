@@ -1,3 +1,3 @@
-export function generateRandomOneNum(max) {
+export default function generateRandomOneNum(max) {
   return Math.floor(Math.random() * max);
 }

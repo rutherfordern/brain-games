@@ -1,4 +1,4 @@
-export function isPrime(num) {
+export default function isPrime(num) {
   let i = 2;
   const limit = Math.sqrt(num);
   while (i <= limit) {

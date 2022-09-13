@@ -1,5 +1,4 @@
-/* eslint-disable */
-export function gcd(num1, num2) {
+export default function gcd(num1, num2) {
   let a = Math.abs(num1);
   let b = Math.abs(num2);
 
@@ -8,7 +7,7 @@ export function gcd(num1, num2) {
     a = b;
     b = temp;
   }
-  
+
   while (true) {
     if (b === 0) return a;
     a %= b;

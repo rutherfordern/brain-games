@@ -1,8 +1,8 @@
-import { gameEngine } from "../game-engine/engine.js";
-import { generateRandomNumber } from "../modules/generate-random-number.js";
-import { generateRandomOneNum } from "../modules/generate-random-one-num.js";
+import gameEngine from '../game-engine/engine.js';
+import generateRandomNumber from '../modules/generate-random-number.js';
+import generateRandomOneNum from '../modules/generate-random-one-num.js';
 
-const gameRule = "What number is missing in the progression?";
+const gameRule = 'What number is missing in the progression?';
 let hiddenNum = null;
 
 function generateQuestion() {
@@ -20,14 +20,14 @@ function generateQuestion() {
 
   const positionHidden = generateRandomOneNum(arrayLength);
   hiddenNum = sortProgression[positionHidden];
-  sortProgression[positionHidden] = "..";
+  sortProgression[positionHidden] = '..';
 
-  const result = sortProgression.join(" ");
+  const result = sortProgression.join(' ');
   return result;
 }
 
 function gameLogic(progression, userAnswer) {
-  const correctAnswer = "Correct!";
+  const correctAnswer = 'Correct!';
   const wrongAnswer = `'yes' is wrong answer ;(. Correct answer was ${hiddenNum}.`;
 
   if (hiddenNum === Number(userAnswer)) {

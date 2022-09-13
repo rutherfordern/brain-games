@@ -1,8 +1,8 @@
-import { gameEngine } from "../game-engine/engine.js";
-import { generateRandomNumber } from "../modules/generate-random-number.js";
-import { gcd } from "../modules/gcd-numbers.js";
+import gameEngine from '../game-engine/engine.js';
+import generateRandomNumber from '../modules/generate-random-number.js';
+import gcd from '../modules/gcd-numbers.js';
 
-const gameRule = "Find the greatest common divisor of given numbers.";
+const gameRule = 'Find the greatest common divisor of given numbers.';
 
 function generateQuestion() {
   const x = generateRandomNumber(1, 100);
@@ -13,7 +13,7 @@ function generateQuestion() {
 }
 
 function gameLogic(numbers, userAnswer) {
-  const arrayNumbers = numbers.split(" ");
+  const arrayNumbers = numbers.split(' ');
   const [num1, num2] = arrayNumbers;
 
   const x = Number(num1);
@@ -21,7 +21,7 @@ function gameLogic(numbers, userAnswer) {
 
   const resultGcd = gcd(x, y);
 
-  const correctAnswer = "Correct!";
+  const correctAnswer = 'Correct!';
   const wrongAnswer = `'yes' is wrong answer ;(. Correct answer was ${resultGcd}.`;
 
   if (resultGcd === Number(userAnswer)) {
